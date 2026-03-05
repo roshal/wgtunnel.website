@@ -12,6 +12,15 @@
     color: var(--primary);
 }
 
+nav.navbar,
+.navbar,
+.navbar--fixed-top,
+.navbar__inner {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
 /* Navbar - Dark Theme */
 [data-theme='dark'] .navbar {
     background-color: var(--background);

@@ -86,6 +86,14 @@ const config: Config = {
             minHeadingLevel: 2,
             maxHeadingLevel: 4,
         },
+        announcementBar: {
+            id: 'announcement',
+            content:
+                '🚀 <strong>Now available for desktop!</strong> <a href="/blog/desktop-launch">Read more</a>',
+            backgroundColor: 'var(--background)',
+            textColor: 'var(--text)',
+            isCloseable: false,
+        },
         mermaid: {
             theme: { light: 'neutral', dark: 'dark' },
         },

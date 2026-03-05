@@ -9,13 +9,3 @@
     background-color: var(--background);
     color: var(--text);
 }
-
-/*[data-theme='dark'] .hero__title,*/
-/*[data-theme='dark'] .hero__subtitle {*/
-/*  color: #ffffff; !* Dark mode title and subtitle color *!*/
-/*}*/
-
-/*[data-theme='light'] .hero__title,*/
-/*[data-theme='light'] .hero__subtitle {*/
-/*  color: #333333; !* Light mode title and subtitle color *!*/
-/*}*/

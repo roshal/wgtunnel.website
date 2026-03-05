@@ -4,8 +4,9 @@
     color: var(--text);
     text-align: start;
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
 
 .download-links {
@@ -14,4 +15,46 @@
     align-items: start;
     gap: 1rem;
     margin-top: 1rem;
+}
+.wide-platform-tabs {
+    margin-bottom: 2.5rem;
+}
+
+.wide-platform-tabs .tabs__item {
+    padding: 1rem 1.75rem !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    min-width: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.wide-platform-tabs .tabs__item svg {
+    width: 22px;
+    height: 22px;
+}
+
+.wide-platform-tabs .tabs {
+    margin-bottom: 2rem;
+}
+
+.platform-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+pre.prism-code.language-bash,
+pre.prism-code.language-shell,
+pre.prism-code.language-sh {
+    background-color: rgb(from var(--primary) r g b / 0.03) !important;
+}
+
+/* Optional: different color for light mode */
+[data-theme='light'] pre.prism-code.language-bash,
+[data-theme='light'] pre.prism-code.language-shell,
+[data-theme='light'] pre.prism-code.language-sh {
+    background-color: rgb(from var(--primary) r g b / 0.03) !important;
 }

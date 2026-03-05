@@ -1,51 +1,197 @@
-import {downloadLatestStandaloneApk} from "../util/downloadApk";
+---
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import {IconTabItem} from '../components/buttons/IconTabItem';
 import OutlinedIconButton from '../components/buttons/OutlinedIconButton';
-import { FaGithub, FaMoon, FaGooglePlay } from 'react-icons/fa';
+import {
+    FaGithub,
+    FaMoon,
+    FaGooglePlay,
+    FaWindows,
+    FaLinux,
+    FaApple,
+    FaAndroid
+} from 'react-icons/fa';
 import { SiFdroid } from 'react-icons/si';
+
+import { downloadLatestAsset } from '../util/downloadLatestAsset';
 
 # Download WG Tunnel
 
-Get the latest release version:
+**Select your platform:**
 
-<div className="download-container">
-    <OutlinedIconButton
-        onClick= { () => {
-            window.open('https://play.google.com/store/apps/details?id=com.zaneschepke.wireguardautotunnel', '_blank')
-        }}
-        label="Google Play"
-        icon={FaGooglePlay}
-    />
-    <OutlinedIconButton
-        onClick= { () => {
-            window.open('https://github.com/wgtunnel/fdroid?tab=readme-ov-file#apps', '_blank')
-        }}
-        label="Project F-Droid"
-        icon={SiFdroid}
-    />
-    <OutlinedIconButton
-        onClick= { () => {
-            window.open('https://apt.izzysoft.de/fdroid/index/apk/com.zaneschepke.wireguardautotunnel', '_blank')
-        }}
-        label="IzzyOnDroid"
-        icon={SiFdroid}
-    />
-    <OutlinedIconButton
-        onClick= { () => { downloadLatestStandaloneApk('https://api.github.com/repos/wgtunnel/wgtunnel/releases/latest') } }
-        label="GitHub APK"
-        icon={FaGithub}
-    />
-</div>
+<Tabs
+    groupId="platform"
+    queryString="platform"
+    defaultValue="android"
+    className="wide-platform-tabs"
+>
+
+    <IconTabItem
+        value="android"
+        label={
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <FaAndroid size={19} /> Android
+            </span>
+        }
+        default
+    >
+        <div className="platform-section">
+            <h2>Stable Release</h2>
+            <div className="download-container">
+                <OutlinedIconButton
+                    onClick={() => { window.open('https://play.google.com/store/apps/details?id=com.zaneschepke.wireguardautotunnel', '_blank'); }}
+                    label="Google Play"
+                    icon={FaGooglePlay}
+                />
+                <OutlinedIconButton
+                    onClick={() => { window.open('https://github.com/wgtunnel/fdroid?tab=readme-ov-file#apps', '_blank'); }}
+                    label="Project F-Droid"
+                    icon={SiFdroid}
+                />
+                <OutlinedIconButton
+                    onClick={() => { window.open('https://apt.izzysoft.de/fdroid/index/apk/com.zaneschepke.wireguardautotunnel', '_blank'); }}
+                    label="IzzyOnDroid"
+                    icon={SiFdroid}
+                />
+                <OutlinedIconButton
+                    onClick={() => downloadLatestAsset('https://api.github.com/repos/wgtunnel/wgtunnel/releases/latest', /^wgtunnel-standalone-.*\.apk$/i)}
+                    label="GitHub APK"
+                    icon={FaGithub}
+                />
+            </div>
+
+            <h2>Nightly Build</h2>
+
+            > ⚠️ **Note**
+            >
+            > The **Nightly** build is the testing and development version.
+            > It updates every night and may contain bugs or experimental features.
+
+            <div className="download-container">
+                <OutlinedIconButton
+                    onClick={() => downloadLatestAsset('https://api.github.com/repos/wgtunnel/wgtunnel/releases/tags/nightly', /^wgtunnel-standalone-.*\.apk$/i)}
+                    label="GitHub Nightly APK"
+                    icon={FaMoon}
+                />
+            </div>
+        </div>
+    </IconTabItem>
+
+    <IconTabItem
+        value="windows"
+        label={
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <FaWindows size={19} /> Windows
+            </span>
+        }
+    >
+        <div className="platform-section">
+            <h2>Stable Release</h2>
+
+            > ⚠️ **Requirements**
+            >
+            > Only **Windows 10 (build 19041+)** or **Windows 11** are supported.
+            > Administrator rights required for installation.
+
+            <div className="download-container">
+                <OutlinedIconButton
+                    onClick={() => downloadLatestAsset('https://api.github.com/repos/wgtunnel/desktop/releases/latest', /^wgtunnel-.*\.x64\.msix$/i)}
+                    label="Download .msix Installer"
+                    icon={FaWindows}
+                />
+            </div>
+        </div>
+    </IconTabItem>
+
+    <IconTabItem
+        value="linux"
+        label={
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <FaLinux size={19} /> Linux
+            </span>
+        }
+    >
+        <div className="platform-section">
+            <h2>Stable Release</h2>
+
+            > ⚠️ **Requirements**
+            >
+            > Only **systemd-based Linux distributions** are supported.
+            > The firewall must use **nftables** or **iptables with the nft backend (`iptables-nft`)**.
+
+            <h3>Debian</h3>
+
+            <div className="download-container">
+                <OutlinedIconButton
+                    onClick={() => downloadLatestAsset('https://api.github.com/repos/wgtunnel/desktop/releases/latest', /^wgtunnel_.*_amd64\.deb$/i)}
+                    label="Download .deb Package"
+                    icon={FaLinux}
+                />
+            </div>
+
+            ```bash
+            sudo apt install ./wgtunnel*.deb
+            ```
+
+            <h3>Arch Linux</h3>
+
+            <p>
+                For Arch, the app is available on the [AUR](https://aur.archlinux.org/packages/wgtunnel-bin).
+            You can install it using an AUR helper such as `yay`:
+            </p>
+
+            ```bash
+            yay -S wgtunnel-bin
+            ```
+
+            <h3>Tarball Installation</h3>
+
+            <div className="download-container">
+                <OutlinedIconButton
+                    onClick={() => downloadLatestAsset('https://api.github.com/repos/wgtunnel/desktop/releases/latest', /^wgtunnel-.*-linux-amd64\.tar\.gz$/i)}
+                    label="Download Tarball"
+                    icon={FaLinux}
+                />
+            </div>
+
+            <p>From the directory where you downloaded the file:</p>
+
+            ```bash
+            tar -xzf wgtunnel-*.tar.gz && \
+            cd wgtunnel-*/ && \
+            curl -LO https://raw.githubusercontent.com/wgtunnel/desktop/master/scripts/linux/install.sh && \
+            chmod +x install.sh && \
+            ./install.sh
+            ```
+
+            <small>Optional uninstall script and full details available in the <a href="https://github.com/wgtunnel/desktop" target="_blank" rel="noopener noreferrer">desktop repository</a>.</small>
+        </div>
+    </IconTabItem>
+
+    <IconTabItem
+        value="macos"
+        label={
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <FaApple size={19} /> macOS
+            </span>
+        }
+    >
+        <div>
+            <h2>Coming Soon!</h2>
+
+            macOS support is actively in development (targeting mid-2026).
+
+            In the meantime, you can use the official WireGuard client.
+        </div>
+    </IconTabItem>
+
+</Tabs>
 
 <br/>
 
-Get the latest nightly version:
-
-:warning: **Note**: Nightly is the testing and development version. The releases are updated every night and may contain bugs or experimental features that can result in data loss.
-
-<div className="download-container">
-    <OutlinedIconButton
-        onClick={ () => { downloadLatestStandaloneApk('https://api.github.com/repos/wgtunnel/wgtunnel/releases/tags/nightly') }}
-        label="GitHub Nightly APK"
-        icon={FaMoon}
-    />
-</div>
+**Source code & previous releases**
+• [Android](https://github.com/wgtunnel/wgtunnel)
+• [Desktop (Windows + Linux)](https://github.com/wgtunnel/desktop/releases)
