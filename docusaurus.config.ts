@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const appName = 'WG Tunnel'
-const githubUrl = 'https://github.com/wgtunnel/wgtunnel'
+const githubUrl = 'https://github.com/wgtunnel'
 
 const config: Config = {
     title: appName,
