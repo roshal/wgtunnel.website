@@ -132,6 +132,7 @@ import { downloadLatestAsset } from '../util/downloadLatestAsset';
                 />
             </div>
 
+            **Install**
             ```bash
             sudo apt install ./wgtunnel*.deb
             ```
@@ -143,8 +144,14 @@ import { downloadLatestAsset } from '../util/downloadLatestAsset';
             You can install it using an AUR helper such as `yay`:
             </p>
 
+            **Install**
             ```bash
             yay -S wgtunnel-bin
+            ```
+
+            **Start Daemon**
+            ```bash
+            sudo systemctl enable --now wgtunnel-daemon.service
             ```
 
             <h3>Tarball Installation</h3>
@@ -159,6 +166,7 @@ import { downloadLatestAsset } from '../util/downloadLatestAsset';
 
             <p>From the directory where you downloaded the file:</p>
 
+            **Install**
             ```bash
             tar -xzf wgtunnel-*.tar.gz && \
             cd wgtunnel-*/ && \
